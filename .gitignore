@@ -5,3 +5,8 @@ build/*
 dist/*
 *.pyc
 py2opt.egg-info/*
+coding/.ipynb_checkpoints
+ml/classification/.ipynb_checkpoints
+.DS_Store
+ml/.DS_Store
+
