@@ -1,8 +1,7 @@
 import streamlit as st
 import requests
 
-# Set your actual n8n webhook URL here
-WEBHOOK_URL = "http://n8n.localhost/webhook-test/109891a6-7fb1-443c-a753-f34f6e6f715d"
+WEBHOOK_URL = "http://n8n.localhost/webhook/109891a6-7fb1-443c-a753-f34f6e6f715d"
 
 st.title("Send Product & Audience to n8n")
 
@@ -17,7 +16,7 @@ if st.button("Enter"):
         }
 
         try:
-            response = requests.post(WEBHOOK_URL, json=payload)
+            response = requests.post(WEBHOOK_URL, json=payload, verify=False)
             if response.status_code == 200:
                 st.success("Data sent to n8n successfully!")
             else:
