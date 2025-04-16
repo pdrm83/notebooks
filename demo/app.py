@@ -1,16 +1,28 @@
-
 import streamlit as st
+import requests
 
-# Set the title of the app
-st.title("Product-Audience Form")
+# Set your actual n8n webhook URL here
+WEBHOOK_URL = "http://n8n.localhost/webhook-test/109891a6-7fb1-443c-a753-f34f6e6f715d"
 
-# Create text input fields
+st.title("Send Product & Audience to n8n")
+
 product = st.text_input("Product")
 audience = st.text_input("Audience")
 
-# Create an Enter button
 if st.button("Enter"):
     if product and audience:
-        st.success(f"You entered:\n- Product: **{product}**\n- Audience: **{audience}**")
+        payload = {
+            "product": product,
+            "audience": audience
+        }
+
+        try:
+            response = requests.post(WEBHOOK_URL, json=payload)
+            if response.status_code == 200:
+                st.success("Data sent to n8n successfully!")
+            else:
+                st.error(f"Failed to send data. Status code: {response.status_code}")
+        except Exception as e:
+            st.error(f"An error occurred: {e}")
     else:
-        st.warning("Please fill in both fields before pressing Enter.")
+        st.warning("Please fill in both fields before submitting.")
