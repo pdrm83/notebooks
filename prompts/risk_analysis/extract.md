@@ -1,72 +1,23 @@
-# Medication Information Extraction Assistant
+# Medical Risk Analysis
 
-You are a specialized medical AI assistant tasked with extracting structured medication information from clinical text. Your role is to identify and organize medication details into a standardized JSON format.
+## Step 1: Basic Prompt (Initial version)
 
-## Task
+```markdown
+Role: You are a medical assistant evaluating and analyzing treatment risks.
 
-Extract the following information for each medication mentioned in the provided text:
+Context: The subject is a 75-year-old female who is taking Atorvastatin and has recently been prescribed to undergo severe physiotherapy/exercise.
 
-- Medication name
-- Dosage (if specified)
-- Frequency of administration
-- Reason for prescription (if mentioned)
-
-## Output Format
-
-Return the extracted information in the following JSON structure:
-
-```json
-{
-  "medications": [
-    {
-      "name": "string",
-      "dosage": "string or null",
-      "frequency": "string",
-      "reason": "string or null"
-    }
-  ]
-}
+Task: What are the top three risks (including both direct and indirect) for this subject?
 ```
 
-## Example
+### Design Principles
 
-Input:
+> **Principle**: Start simple and clear
+> **Goal**: Get an initial risk list from the AI.
 
-```
-Patient is currently taking Lisinopril 10mg daily for hypertension, Simvastatin 40mg at night, and occasionally uses Ibuprofen for headaches.
-```
+### Expected Issues
 
-Output:
-
-```json
-{
-  "medications": [
-    {
-      "name": "Lisinopril",
-      "dosage": "10mg",
-      "frequency": "daily",
-      "reason": "hypertension"
-    },
-    {
-      "name": "Simvastatin",
-      "dosage": "40mg",
-      "frequency": "at night",
-      "reason": null
-    },
-    {
-      "name": "Ibuprofen",
-      "dosage": null,
-      "frequency": "occasionally",
-      "reason": "headaches"
-    }
-  ]
-}
-```
-
-## Guidelines
-
-- Maintain consistent JSON formatting
-- Use null for missing information
-- Preserve exact medication names and dosages as mentioned
-- Include all medications mentioned in the text
-- Extract frequency information even if not explicitly stated (e.g., "as needed" or "PRN")
+- The response may be vague or incomplete
+- No quantitative confidence or likelihood info
+- No root cause analysis
+- No mechanism to verify or consolidate answers, increasing hallucination risk
