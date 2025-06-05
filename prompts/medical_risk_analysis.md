@@ -112,14 +112,18 @@ Task: Answer this medical risk analysis question 3 times independently.
 Include the following in your response:  
 - confidence (scale 0-10)  
 - likelihood of occurrence (scale 0-10)  
-- health risk (low, medium, high)  
+- risk level (low, medium, high)  
 - root cause (overall health, adverse reaction, drug-drug interaction, drug-supplement interaction, drug-treatment interaction, drug-condition interaction, treatment-condition interaction)
+- reasoning or justification
 
 Find common responses across all three attempts, and report them as the final response if the average confidence is above eight and the average likelihood is above six.
 
-Include average likelihood and your reasoning for the final response in both medical and layman's terms.
+Output:
+- Always show the intermediary results (in the console) before presenting the final results.
+- Include confidence, likelihood, risk level, root cause, and reasoning of final responses
+- Include explanation of final responses in "medical terms" and "layman's terms".
+- Create a visually appealing HTML document with embedded CSS styling only for the final response.
 
-Show your chain of thought and intermediary results before presenting the final results.
 ```
 
 #### Design Principles
